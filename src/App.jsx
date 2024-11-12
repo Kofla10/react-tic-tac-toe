@@ -7,11 +7,17 @@ import Log from "./components/Log"
 function App() {
 
   const [gameTurns, setGameTurns] = useState([])
-  const [activePlayer, setActivePlayer] = useState('X')
+  const [activePlayer, setActivePlayer] = useState('👺')
 
-  const handleSelectSquare = () => {
-    setActivePlayer( ( currentActivePlayer )  => currentActivePlayer === 'X' ? 'O':'X')
-    setGameTurns(); 
+  const handleSelectSquare = (rowIndex, colIndex) => {
+    setActivePlayer( ( currentActivePlayer )  => currentActivePlayer === '👺' ? '💀':'👺')
+    setGameTurns( prevTurns => {
+      let currentPlayer = '👺';
+
+      const updatedTurns = [
+        {square: { row: rowIndex, col: colIndex }, player: activePlayer},
+        ... prevTurns]
+    });
   }
 
   return(
@@ -19,8 +25,8 @@ function App() {
       <img src="./" alt="" />
       <div id="game-container">
           <ol id="players" className="highlight-player">
-            <Player initialName='Player 1' symbol='X' isActive={ activePlayer === 'X' }/>
-            <Player initialName='Player 2' symbol='O' isActive={ activePlayer === 'O'}/>
+            <Player initialName='Player 1' symbol='👺' isActive={ activePlayer === '👺' }/>
+            <Player initialName='Player 2' symbol='💀' isActive={ activePlayer === '💀'}/>
           </ol>
           <GameBoard onSelectSqueare = { handleSelectSquare } activePlayerSymbo = { activePlayer } />
       </div>

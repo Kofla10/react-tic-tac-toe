@@ -4,24 +4,23 @@ const initialGameBoard = [
     [null, null, null],
     [null, null, null]
 ]
-const GameBoard = ({ onSelectSqueare, activePlayerSymbo }) => {
-    console.log(activePlayerSymbo)
+const GameBoard = ({ onSelectSqueare }) => {
 
-    const [gameBoard, setGameBoard] = useState( initialGameBoard )
+    // const [gameBoard, setGameBoard] = useState( initialGameBoard )
 
-    const handleSelectSquare = ( rowIndex, colIndex ) => {
+    // const handleSelectSquare = ( rowIndex, colIndex ) => {
 
-        setGameBoard( ( prevGameBoard ) => {
+    //     setGameBoard( ( prevGameBoard ) => {
 
-            const updatedBoard = [ ...prevGameBoard.map( innerArray => [ ...innerArray ])];
-            updatedBoard[rowIndex][colIndex] = activePlayerSymbo;
-            // console.table(updatedBoard)
-            return updatedBoard;
-        })
+    //         const updatedBoard = [ ...prevGameBoard.map( innerArray => [ ...innerArray ])];
+    //         updatedBoard[rowIndex][colIndex] = activePlayerSymbo;
+    //         // console.table(updatedBoard)
+    //         return updatedBoard;
+    //     })
 
-        onSelectSqueare();
+    //     onSelectSqueare();
 
-    }
+    // }
 
     return (
         <ol id="game-board">
@@ -32,7 +31,7 @@ const GameBoard = ({ onSelectSqueare, activePlayerSymbo }) => {
                             {
                                 row.map(( playerSymbol, colIndex ) =>
                                     <li key={ colIndex }>
-                                        <button onClick={ () => handleSelectSquare( rowIndex, colIndex )}> { playerSymbol }</button>
+                                        <button onClick={ onSelectSqueare }> { playerSymbol }</button>
                                     </li>
                                 )
                             }
