@@ -1,10 +1,15 @@
 import React from 'react'
 
-const Log = () => {
+const Log = ( { turns }) => {
+    console.log( turns );
     return (
-        <ol id='log'>
-            <h1>this is a test</h1>
-        </ol>
+        <>
+            <ol id='log'>
+                {
+                    turns.map(item => <il>{ `${item.player} selected ${item} `}</il>)
+                }
+            </ol>
+        </>
     )
 }
 

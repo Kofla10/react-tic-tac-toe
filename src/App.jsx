@@ -10,14 +10,23 @@ function App() {
   const [activePlayer, setActivePlayer] = useState('👺')
 
   const handleSelectSquare = (rowIndex, colIndex) => {
-    setActivePlayer( ( currentActivePlayer )  => currentActivePlayer === '👺' ? '💀':'👺')
+
+    setActivePlayer( ( currentActivePlayer )  => currentActivePlayer === '👺' ? '💀':'👺');
+
     setGameTurns( prevTurns => {
+
       let currentPlayer = '👺';
 
+      if(prevTurns.length > 0 && prevTurns[0].player === '👺')
+        currentPlayer = '💀'
+
       const updatedTurns = [
-        {square: { row: rowIndex, col: colIndex }, player: activePlayer},
+        {square: { row: rowIndex, col: colIndex }, player: currentPlayer},
         ... prevTurns]
+
+        return updatedTurns;
     });
+
   }
 
   return(
@@ -28,9 +37,12 @@ function App() {
             <Player initialName='Player 1' symbol='👺' isActive={ activePlayer === '👺' }/>
             <Player initialName='Player 2' symbol='💀' isActive={ activePlayer === '💀'}/>
           </ol>
-          <GameBoard onSelectSqueare = { handleSelectSquare } activePlayerSymbo = { activePlayer } />
+          <GameBoard
+            onSelectSqueare = { handleSelectSquare }
+            turns = { gameTurns }
+          />
       </div>
-      <Log/>
+      <Log turns = { gameTurns }/>
     </main>
   )
 }

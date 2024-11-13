@@ -4,23 +4,18 @@ const initialGameBoard = [
     [null, null, null],
     [null, null, null]
 ]
-const GameBoard = ({ onSelectSqueare }) => {
+const GameBoard = ({ onSelectSqueare, turns }) => {
 
-    // const [gameBoard, setGameBoard] = useState( initialGameBoard )
+    let gameBoard =  initialGameBoard;
 
-    // const handleSelectSquare = ( rowIndex, colIndex ) => {
+    for ( const turn of turns){
 
-    //     setGameBoard( ( prevGameBoard ) => {
+        const { square, player } = turn;
+        const { row, col }       = square;
 
-    //         const updatedBoard = [ ...prevGameBoard.map( innerArray => [ ...innerArray ])];
-    //         updatedBoard[rowIndex][colIndex] = activePlayerSymbo;
-    //         // console.table(updatedBoard)
-    //         return updatedBoard;
-    //     })
+        gameBoard[row][col] = player;
 
-    //     onSelectSqueare();
-
-    // }
+    }
 
     return (
         <ol id="game-board">
@@ -31,7 +26,7 @@ const GameBoard = ({ onSelectSqueare }) => {
                             {
                                 row.map(( playerSymbol, colIndex ) =>
                                     <li key={ colIndex }>
-                                        <button onClick={ onSelectSqueare }> { playerSymbol }</button>
+                                        <button onClick={ () => onSelectSqueare( rowIndex, colIndex) }> { playerSymbol }</button>
                                     </li>
                                 )
                             }
