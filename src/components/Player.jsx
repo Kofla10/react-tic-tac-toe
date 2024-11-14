@@ -5,8 +5,6 @@ const Player = ( {initialName, symbol, isActive} ) => {
     const [playerName, setPlayerName] = useState(initialName)
     const [isEditing, setIsEditing] = useState(false)
 
-    // console.log(playerName);
-
     const handleEditName = () => {
         setIsEditing((isEditing ) => !isEditing); // if your new state depends on your previous state value, you should not update the state like this
     }
@@ -14,10 +12,6 @@ const Player = ( {initialName, symbol, isActive} ) => {
     const handleChange =(event)  => {
         setPlayerName( event.target.value ); //We change player's name
     }
-
-    // let playerName = <span className="player-name"> { name }</span>;
-    // if(isEditing)
-    //     playerName = <input placeholder='Player Name' type="text"  required />
 
     return (
         <li className={ isActive ? 'active' : undefined}>
