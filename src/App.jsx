@@ -24,7 +24,8 @@ const deriveActivePlayer = ( gameTurns ) => {
 function App() {
 
   const [hasWinner, setHasWinner] = useState(false);
-  const [gameTurns, setGameTurns] = useState([])
+  const [gameTurns, setGameTurns] = useState([]);
+  const [winnerName, setWinnerName] = useState('')
 
   const activePlayer =  deriveActivePlayer( gameTurns );
 
@@ -69,8 +70,8 @@ function App() {
       <img src="./" alt="" />
       <div id="game-container">
           <ol id="players" className="highlight-player">
-            <Player initialName='Player 1' symbol='👺' isActive={ activePlayer === '👺' }/>
-            <Player initialName='Player 2' symbol='💀' isActive={ activePlayer === '💀'}/>
+            <Player nameWinner = { setWinnerName } initialName='Player 1' symbol='👺' isActive={ activePlayer === '👺' }/>
+            <Player nameWinner = { setWinnerName } initialName='Player 2' symbol='💀' isActive={ activePlayer === '💀'}/>
           </ol>
           {winner && <GameOver winner={ winner } name = { 'Camilo' }/>}
           <GameBoard

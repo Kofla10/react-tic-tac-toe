@@ -3,10 +3,12 @@ import { useState } from "react"
 const Player = ( {initialName, symbol, isActive} ) => {
 
     const [playerName, setPlayerName] = useState(initialName)
-    const [isEditing, setIsEditing] = useState(false)
+    const [isEditing, setIsEditing]   = useState(false)
+    console.log(playerName)
 
     const handleEditName = () => {
-        setIsEditing((isEditing ) => !isEditing); // if your new state depends on your previous state value, you should not update the state like this
+        // if your new state depends on your previous state value, you should not update the state like this
+        setIsEditing((isEditing ) => !isEditing);
     }
 
     const handleChange =(event)  => {
